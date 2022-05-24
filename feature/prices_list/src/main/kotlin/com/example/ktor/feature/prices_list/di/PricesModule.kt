@@ -31,7 +31,7 @@ internal fun pricesModule(httpClient: HttpClient) = module {
     }
 }
 
-
+/* Пока не придумал как можно проще интегрировать keemun tea в стек koin+compose+navigation. */
 internal class PricesViewModel(feature: PricesFeature) : ViewModel(), PricesFeature by feature {
     override fun onCleared() {
         scope.cancel()
