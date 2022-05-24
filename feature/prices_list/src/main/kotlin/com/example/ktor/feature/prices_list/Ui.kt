@@ -41,13 +41,13 @@ internal fun PricesListUi(priceViewState: PricesViewState) {
             )
         }
         LazyColumn {
-            itemsIndexed(priceViewState.prices, { _, priceItem -> priceItem.id }) { index, priceEntity ->
+            itemsIndexed(priceViewState.prices, { _, priceItem -> priceItem.id }) { index, priceItem ->
                 Row {
                     Row(Modifier.width(150.dp)) {
                         Text(text = index.toString(), Modifier.width(32.dp))
-                        Text(text = priceEntity.name)
+                        Text(text = priceItem.name)
                     }
-                    Text(text = priceEntity.priceValue)
+                    Text(text = priceItem.priceValue)
                 }
             }
         }
