@@ -12,21 +12,26 @@ object BuildPlugins {
     }
 }
 
-object Dependencies {
+object Modules {
 
+    object Core {
+        const val std = ":core:std"
+        const val network = ":core:network"
+    }
+
+    object Feature {
+        val pricesList = ":feature:prices_list"
+    }
+}
+
+object Dependencies {
 
     object Tea {
         const val keemun = "family.amma:keemun:1.2.3"
     }
 
     object AndroidX {
-        const val appCompat = "androidx.appcompat:appcompat:1.4.1"
         const val activity = "androidx.activity:activity-ktx:1.4.0"
-        const val fragment = "androidx.fragment:fragment-ktx:1.4.1"
-        const val cardview = "androidx.cardview:cardview:1.0.0"
-        const val multidex = "androidx.multidex:multidex:2.0.1"
-        const val kotlinExtensions = "androidx.core:core-ktx:1.7.0"
-
         object Compose {
             const val composeCompilerVersion = "1.2.0-beta02"
             const val composeVersion = "1.2.0-beta02"

@@ -1,6 +1,6 @@
 package com.example.ktor.di
 
-import com.example.ktor.data.MessaryApi
+import com.example.ktor.BuildConfig
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.*
@@ -11,7 +11,7 @@ import io.ktor.client.request.*
 import kotlinx.serialization.json.Json as SerializationJson
 import org.koin.dsl.module
 
-const val TIME_OUT = 60_000
+private const val TIME_OUT = 60_000
 
 val networkModule = module {
     single { configureMessaryClient() }
@@ -33,7 +33,7 @@ private fun configureMessaryClient(): HttpClient {
         }
         install(Logging)
         install(DefaultRequest) {
-            header("x-messari-api-key", "44926959-5c77-4b81-8ffa-43920d45d57f")
+            header("x-messari-api-key", BuildConfig.MESSARY_API_KEY)
         }
     }
 }

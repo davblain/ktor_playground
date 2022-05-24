@@ -1,6 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.example.ktor.project.AndroidProject
 import com.example.ktor.project.Dependencies
+import com.example.ktor.project.Modules
 
 plugins {
     id("com.android.application")
@@ -18,6 +19,7 @@ android {
         targetSdk = AndroidProject.targetSdkVersion
         versionCode = 1
         versionName = "1.0"
+        buildConfigField("String", "MESSARY_API_KEY", "\"44926959-5c77-4b81-8ffa-43920d45d57f\"")
     }
 
     compileOptions {
@@ -69,5 +71,5 @@ dependencies {
 
     implementation(Dependencies.Logger.core)
     implementation(Dependencies.Koin.compose)
-    implementation(Dependencies.Tea.keemun)
+    implementation(project(Modules.Feature.pricesList))
 }
