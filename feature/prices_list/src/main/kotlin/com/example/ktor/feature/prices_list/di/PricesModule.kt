@@ -10,6 +10,7 @@ import com.example.ktor.feature.prices_list.feature.pricesEffectHandler
 import com.example.ktor.feature.prices_list.feature.pricesFeatureParams
 import com.example.ktor.feature.prices_list.feature.utils.createFeature
 import io.ktor.client.*
+import kotlinx.coroutines.cancel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -31,4 +32,8 @@ internal fun pricesModule(httpClient: HttpClient) = module {
 }
 
 
-internal class PricesViewModel(feature: PricesFeature) : ViewModel(), PricesFeature by feature
+internal class PricesViewModel(feature: PricesFeature) : ViewModel(), PricesFeature by feature {
+    override fun onCleared() {
+        scope.cancel()
+    }
+}

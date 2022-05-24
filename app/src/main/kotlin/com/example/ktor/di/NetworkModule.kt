@@ -10,6 +10,7 @@ import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import kotlinx.serialization.json.Json as SerializationJson
 import org.koin.dsl.module
+import timber.log.Timber
 
 private const val TIME_OUT = 60_000
 
@@ -31,7 +32,14 @@ private fun configureMessaryClient(): HttpClient {
                 socketTimeout = TIME_OUT
             }
         }
-        install(Logging)
+        install(Logging) {
+            logger = object : Logger {
+                override fun log(message: String) {
+                    Timber.v("HTTP Client $message")
+                }
+            }
+            level = LogLevel.BODY
+        }
         install(DefaultRequest) {
             header("x-messari-api-key", BuildConfig.MESSARY_API_KEY)
         }
