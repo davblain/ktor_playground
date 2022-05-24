@@ -35,4 +35,3 @@ internal data class PriceEntity(
     val name: String,
     val price: Double
 ) : Parcelable
-

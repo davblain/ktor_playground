@@ -52,7 +52,11 @@ dependencies {
     implementation(Dependencies.AndroidX.Compose.runtime)
     implementation(Dependencies.AndroidX.Compose.material)
     implementation(Dependencies.AndroidX.Compose.tooling)
-
+    implementation(Dependencies.AndroidX.Compose.toolingPreview)
+    implementation(Dependencies.AndroidX.Compose.activity)
+    //Временный Workaround  обхода https://issuetracker.google.com/issues/227767363
+    debugImplementation("androidx.customview:customview:1.2.0-alpha01")
+    debugImplementation("androidx.customview:customview-poolingcontainer:1.0.0-beta02")
     implementation(project(Modules.Core.network))
     implementation(project(Modules.Core.std))
 }

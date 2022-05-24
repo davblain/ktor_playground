@@ -37,6 +37,7 @@ object Dependencies {
             const val composeVersion = "1.2.0-beta02"
             const val ui = "androidx.compose.ui:ui:$composeVersion"
             const val tooling = "androidx.compose.ui:ui-tooling:$composeVersion"
+            const val toolingPreview = "androidx.compose.ui:ui-tooling:$composeVersion"
             const val compiler = "androidx.compose.compiler:compiler:${composeCompilerVersion}"
             const val runtime = "androidx.compose.runtime:runtime:$composeVersion"
             const val activity = "androidx.activity:activity-compose:1.4.0"
