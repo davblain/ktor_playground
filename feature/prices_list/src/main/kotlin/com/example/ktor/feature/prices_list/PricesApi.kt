@@ -11,7 +11,7 @@ import org.koin.core.context.loadKoinModules
 
 interface PricesApi {
     val pricesRoute: String
-    fun registerPricesScreen(builder: NavGraphBuilder, navController: NavController)
+    fun registerPricesScreen(builder: NavGraphBuilder)
 }
 
 internal class PricesApiImpl(deps: PricesDeps) : PricesApi {
@@ -21,7 +21,7 @@ internal class PricesApiImpl(deps: PricesDeps) : PricesApi {
 
     override val pricesRoute: String = "prices"
 
-    override fun registerPricesScreen(builder: NavGraphBuilder, navController: NavController) {
+    override fun registerPricesScreen(builder: NavGraphBuilder) {
         builder.composable(pricesRoute) {
             PricesListUi(feature = getStateViewModel<PricesViewModel>())
         }
