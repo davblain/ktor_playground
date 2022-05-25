@@ -17,6 +17,7 @@ object Modules {
     object Core {
         const val std = ":core:std"
         const val network = ":core:network"
+        const val messariApi = ":core:messari_api"
     }
 
     object Feature {

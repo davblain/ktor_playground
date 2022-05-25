@@ -11,7 +11,6 @@ plugins {
 }
 
 android {
-
     compileSdk = AndroidProject.compileSdkVersion
     buildToolsVersion = AndroidProject.buildToolsVersion
 
@@ -54,9 +53,9 @@ dependencies {
     implementation(Dependencies.AndroidX.Compose.tooling)
     implementation(Dependencies.AndroidX.Compose.toolingPreview)
     implementation(Dependencies.AndroidX.Compose.activity)
+    implementation(project(Modules.Core.network))
+    implementation(project(Modules.Core.std))
     //Временный Workaround  обхода https://issuetracker.google.com/issues/227767363
     debugImplementation("androidx.customview:customview:1.2.0-alpha01")
     debugImplementation("androidx.customview:customview-poolingcontainer:1.0.0-beta02")
-    implementation(project(Modules.Core.messariApi))
-    implementation(project(Modules.Core.std))
 }

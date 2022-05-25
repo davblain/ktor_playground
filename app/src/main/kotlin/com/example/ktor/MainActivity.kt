@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     val priceApi = get<PricesApi>()
                     NavHost(navController = navController, startDestination = "first_screen") {
-                        priceApi.registerPricesScreen(this, navController)
+                        priceApi.registerPricesScreen(this, onClickItem = { navController.navigate("first_screen") })
 
                         //Просто для проверки смерти tea фичи при back press
                         composable("first_screen") {

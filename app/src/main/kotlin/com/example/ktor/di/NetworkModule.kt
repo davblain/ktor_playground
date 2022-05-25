@@ -1,6 +1,7 @@
 package com.example.ktor.di
 
 import com.example.ktor.BuildConfig
+import com.example.ktor.core.messari_api.MessariApi
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.*
@@ -15,7 +16,7 @@ import timber.log.Timber
 private const val TIME_OUT = 60_000
 
 val networkModule = module {
-    single { configureMessaryClient() }
+    single { MessariApi(configureMessaryClient()) }
 }
 
 private fun configureMessaryClient(): HttpClient {
