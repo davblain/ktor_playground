@@ -22,6 +22,7 @@ object Modules {
 
     object Feature {
         val pricesList = ":feature:prices_list"
+        val cryptoDetails = ":feature:details"
     }
 }
 
@@ -33,6 +34,7 @@ object Dependencies {
 
     object AndroidX {
         const val activity = "androidx.activity:activity-ktx:1.4.0"
+
         object Compose {
             const val composeCompilerVersion = "1.2.0-beta02"
             const val composeVersion = "1.2.0-beta02"

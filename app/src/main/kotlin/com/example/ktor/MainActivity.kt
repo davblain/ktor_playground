@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.ktor.feature.details.DetailsApi
 import com.example.ktor.feature.prices_list.PricesApi
 import com.example.ktor.ui.theme.KtorExampleTheme
 import org.koin.androidx.compose.get
@@ -22,15 +23,13 @@ class MainActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     val navController = rememberNavController()
                     val priceApi = get<PricesApi>()
-                    NavHost(navController = navController, startDestination = "first_screen") {
-                        priceApi.registerPricesScreen(this, onClickItem = { navController.navigate("first_screen") })
-
-                        //Просто для проверки смерти tea фичи при back press
-                        composable("first_screen") {
-                            Button(onClick = { navController.navigate(priceApi.pricesRoute) }) {
-                                Text(text = "toNext")
-                            }
-                        }
+                    val detailsApi = get<DetailsApi>()
+                    NavHost(navController = navController, startDestination = priceApi.pricesRoute) {
+                        priceApi.registerPricesScreen(
+                            this,
+                            onClickItem = { navController.navigate(detailsApi.detailsRoute(it)) }
+                        )
+                        detailsApi.registerDetailsScreen(this)
                     }
                 }
             }

@@ -54,6 +54,7 @@ dependencies {
     implementation(Dependencies.AndroidX.Compose.toolingPreview)
     implementation(Dependencies.AndroidX.Compose.activity)
     implementation(project(Modules.Core.network))
+    implementation(project(Modules.Core.messariApi))
     implementation(project(Modules.Core.std))
     //Временный Workaround  обхода https://issuetracker.google.com/issues/227767363
     debugImplementation("androidx.customview:customview:1.2.0-alpha01")

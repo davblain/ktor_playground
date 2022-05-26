@@ -24,13 +24,24 @@ private fun internalUpdater() = Update<PricesState, PricesInternalMsg, PricesEff
 }
 
 private fun externalUpdater() = Update<PricesState, PricesExternalMsg, PricesEffect> { msg, state ->
-    state to emptySet()
+    when (msg) {
+        PricesExternalMsg.StartObservePrices ->
+            state to setOf(PricesEffect.StartObservePrices)
+
+        PricesExternalMsg.StopObservePrices ->
+            state to setOf(PricesEffect.StopObservePrices)
+    }
 }
 
 /** Сайд-эффекты. */
 internal sealed class PricesEffect {
+    object StartObservePrices : PricesEffect()
+    object StopObservePrices : PricesEffect()
     object ObservePrices : PricesEffect()
 }
 
 /** Внешние сообщения. */
-internal sealed class PricesExternalMsg : PricesMsg()
+internal sealed class PricesExternalMsg : PricesMsg() {
+    object StartObservePrices : PricesExternalMsg()
+    object StopObservePrices : PricesExternalMsg()
+}

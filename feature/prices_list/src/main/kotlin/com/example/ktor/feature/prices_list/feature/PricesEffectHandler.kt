@@ -2,20 +2,32 @@ package com.example.ktor.feature.prices_list.feature
 
 import family.amma.keemun.EffectHandler
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 
 internal typealias PricesEffectHandler = EffectHandler<PricesEffect, PricesMsg>
 
 internal fun pricesEffectHandler(
     repository: PricesRepository
-) = PricesEffectHandler { effect, dispatch ->
-    when (effect) {
-        PricesEffect.ObservePrices ->
-            while (true) {
-                val prices = repository.getPrices()
-                dispatch(PricesInternalMsg.PricesUpdated(prices))
-                delay(5000)
+): PricesEffectHandler {
+    val updatesState = MutableStateFlow(UpdateState.Stopped)
+    return PricesEffectHandler { effect, dispatch ->
+        when (effect) {
+            PricesEffect.StartObservePrices -> {
+                updatesState.value = UpdateState.InProcess
             }
+            PricesEffect.ObservePrices -> {
+                updatesState.filter { it == UpdateState.InProcess }
+                    .onEach { dispatch(PricesInternalMsg.PricesUpdated(repository.getPrices())) }
+                    .onEach { delay(5000) }
+                    .collect()
+            }
+            PricesEffect.StopObservePrices -> updatesState.value = UpdateState.Stopped
+        }
     }
+}
+
+enum class UpdateState {
+    Stopped, InProcess
 }
 
 /** Внутренние сообщения. */

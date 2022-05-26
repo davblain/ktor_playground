@@ -1,6 +1,7 @@
 package com.example.ktor
 
 import android.app.Application
+import com.example.ktor.di.detailsConfigurationModule
 import com.example.ktor.di.networkModule
 import com.example.ktor.di.pricesConfigurationModule
 import org.koin.android.ext.koin.androidContext
@@ -16,7 +17,8 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 networkModule,
-                pricesConfigurationModule
+                pricesConfigurationModule,
+                detailsConfigurationModule
             )
         }
     }

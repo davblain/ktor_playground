@@ -72,5 +72,6 @@ dependencies {
     implementation(Dependencies.Logger.core)
     implementation(Dependencies.Koin.compose)
     implementation(project(Modules.Feature.pricesList))
+    implementation(project(Modules.Feature.cryptoDetails))
     implementation(project(Modules.Core.messariApi))
 }

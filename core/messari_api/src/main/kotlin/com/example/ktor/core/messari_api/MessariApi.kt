@@ -33,7 +33,7 @@ class MessariApi(private val client: HttpClient) {
             safeRequest {
                 client.get {
                     url(MessaryApiRoutes.getProfileUrl(id))
-                    parameter("fields", "profile/general/overview,background")
+                    parameter("fields", "profile/general/overview,profile/general/background")
                 }
             }
         }
